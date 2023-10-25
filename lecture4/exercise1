@@ -1,0 +1,28 @@
+package ralevski;
+//Written by Kristijan Ralevski 5549
+public class main {
+
+	public static void main(String[] args) {
+		String comp = "Computer";
+		System.out.println(comp);
+		System.out.println(comp.toUpperCase());
+		System.out.println(comp.toLowerCase());
+		System.out.println(comp.length());
+		System.out.println(comp.charAt(0));
+		char lastChar = comp.charAt(comp.length()-1);
+		System.out.println(lastChar);
+		System.out.println(comp.charAt(3));
+		boolean EndIon = comp.endsWith("ion");
+		System.out.println(EndIon);
+		String FirstTwo = comp.substring(0,2);
+		System.out.println("FirstTwo");
+		String Swap = comp.replace("e", "o");
+		System.out.println(Swap);
+		String Rep = comp.replace("Compu", "Calculu");
+		System.out.println(Rep);
+		char middle = comp.length() % 2 == 0 ? (comp.charAt(comp.length()/2)) : (comp.charAt(comp.length()/2 - 1));
+		System.out.println(middle);
+		
+	}
+
+}
