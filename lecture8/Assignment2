@@ -1,0 +1,140 @@
+import java.util.Random;
+
+interface Average {
+    float average();
+}
+
+interface Scholarship {
+    float rate();
+}
+
+class Person {
+    protected String p_name;
+
+    public Person(String p_name) {
+        this.p_name = p_name;
+    }
+}
+
+class Employee extends Person implements Average {
+    private int no_salaries;
+    private int[] salary = new int[12];
+
+    public Employee(String name, int n) {
+        super(name);
+        this.no_salaries = n;
+        Random random = new Random();
+        for (int i = 0; i < 12; i++) {
+            salary[i] = random.nextInt(30001);
+        }
+    }
+
+    @Override
+    public float average() {
+        if (no_salaries == 0) {
+            return 0;
+        }
+        int sum = 0;
+        for (int i = 0; i < no_salaries; i++) {
+            sum += salary[i];
+        }
+        return (float) sum / no_salaries;
+    }
+}
+
+class Student extends Person implements Average, Scholarship {
+    private int no_grades;
+    private Employee parent1;
+    private Employee parent2;
+    private int[] grade = new int[6];
+
+    public Student(String name, int n, Employee r1, Employee r2) {
+        super(name);
+        this.no_grades = 6;
+        this.parent1 = r1;
+        this.parent2 = r2;
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            grade[i] = random.nextInt(6) + 5;
+        }
+    }
+
+    @Override
+    public float average() {
+        if (no_grades == 0) {
+            return 0;
+        }
+        int sum = 0;
+        for (int i = 0; i < no_grades; i++) {
+            sum += grade[i];
+        }
+        return (float) sum / no_grades;
+    }
+
+    @Override
+    public float rate() {
+        float gpa = average();
+        float parentSalarySum = parent1.average() + parent2.average();
+        return gpa * 6 + (60000 - parentSalarySum) * 4;
+    }
+
+    public String getParent1Name() {
+        return parent1.p_name;
+    }
+
+    public float getParent1AverageSalary() {
+        return parent1.average();
+    }
+
+    public String getParent2Name() {
+        return parent2.p_name;
+    }
+
+    public float getParent2AverageSalary() {
+        return parent2.average();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Employee[] parents = new Employee[6];
+        for (int i = 0; i < 6; i++) {
+            if (i < 2) {
+                parents[i] = new Employee("Unemployed", 0);
+            } else {
+                parents[i] = new Employee("Parent " + (i - 1), 12);
+            }
+        }
+
+        Student[] students = new Student[3];
+        for (int i = 0; i < 3; i++) {
+            students[i] = new Student("Student " + (i + 1), 6, parents[i * 2], parents[i * 2 + 1]);
+        }
+
+        for (Student student : students) {
+            System.out.println("Student Name: " + student.p_name);
+            System.out.println("GPA: " + student.average());
+            System.out.println("First Parent: " + student.getParent1Name() + " Average Salary: " + student.getParent1AverageSalary());
+            System.out.println("Second Parent: " + student.getParent2Name() + " Average Salary: " + student.getParent2AverageSalary());
+            System.out.println("Scholarship Points: " + student.rate());
+            System.out.println();
+        }
+
+        float maxPoints = -1;
+        Student scholarshipRecipient = null;
+        for (Student student : students) {
+            float points = student.rate();
+            if (points > maxPoints) {
+                maxPoints = points;
+                scholarshipRecipient = student;
+            }
+        }
+
+        System.out.println("Scholarship Recipient:");
+        System.out.println("Name: " + scholarshipRecipient.p_name);
+        System.out.println("GPA: " + scholarshipRecipient.average());
+        System.out.println("First Parent: " + scholarshipRecipient.getParent1Name() + " Average Salary: " + scholarshipRecipient.getParent1AverageSalary());
+        System.out.println("Second Parent: " + scholarshipRecipient.getParent2Name() + " Average Salary: " + scholarshipRecipient.getParent2AverageSalary());
+        System.out.println("Scholarship Points: " + scholarshipRecipient.rate());
+    }
+}
