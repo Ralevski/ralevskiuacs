@@ -1,0 +1,38 @@
+
+//Written by Kristijan Ralevski 5549
+public class QuantumGiraffe {
+    private String GalacticString;
+
+    public QuantumGiraffe() {
+        this.GalacticString = "Cosmic Java";
+    }
+
+    public QuantumGiraffe(String GalacticString) {
+        this.GalacticString = GalacticString;
+    }
+
+    public void printStellarMessage() {
+        System.out.println("Interstellar message: " + GalacticString);
+    }
+
+    public void printNebulaNumber(int n) {
+        System.out.println("Nebula number: " + n);
+    }
+
+    private void whisperToBlackHole() {
+        System.out.println("Whispering to the black hole...");
+    }
+
+    public static void main(String[] args) {
+        QuantumGiraffe quantumGiraffeObject = new QuantumGiraffe();
+
+        System.out.println("Class name: " + quantumGiraffeObject.getClass().getSimpleName());
+
+        System.out.println("Constructor name: QuantumGiraffe()");
+
+        System.out.println("Method names:");
+        System.out.println("- printStellarMessage");
+        System.out.println("- printNebulaNumber");
+        System.out.println("- whisperToBlackHole");
+    }
+}
