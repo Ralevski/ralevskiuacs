@@ -1,0 +1,50 @@
+import java.io.Serializable;
+
+public class Student implements Serializable {
+    private String studentName;
+    private String phoneNumber;
+    private int studentIndex;
+    private transient int studentRecord;
+
+    public Student() {
+    }
+
+    public Student(String studentName, String phoneNumber, int studentIndex, int studentRecord) {
+        this.studentName = studentName;
+        this.phoneNumber = phoneNumber;
+        this.studentIndex = studentIndex;
+        this.studentRecord = studentRecord;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getStudentIndex() {
+        return studentIndex;
+    }
+
+    public void setStudentIndex(int studentIndex) {
+        this.studentIndex = studentIndex;
+    }
+
+    public int getStudentRecord() {
+        return studentRecord;
+    }
+
+    public void setStudentRecord(int studentRecord) {
+        this.studentRecord = studentRecord;
+    }
+}
