@@ -1,0 +1,12 @@
+import java.util.Scanner;
+//Kristijan Ralevski 5549
+public class InputText {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = "";
+        while (!input.equals("END")) {
+            input = scanner.nextLine();
+            System.out.println("Length: " + input.length() + ", Weight: " + input.length() * 2);
+        }
+    }
+}
