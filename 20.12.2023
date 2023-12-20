@@ -33,7 +33,6 @@ public class App {
         System.out.println("Prosek na elementi: " + average);
     }
 
-    // Helper method to get valid integer input
     private static int getValidInput(Scanner scanner) {
         while (true) {
             try {
