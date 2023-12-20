@@ -1,0 +1,47 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+//Kristijan Ralevski 5549
+public class App {
+    public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+
+        int rows, cols;
+        System.out.print("Vnesi rows:");
+        rows = getValidInput(scanner);
+        System.out.print("Vnesi columns: ");
+        cols = getValidInput(scanner);
+
+        int[][] array = new int[rows][cols];
+        System.out.println("Vnesi elementi na nizata: ");
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print("Element na pozicija [" + i + "][" + j + "]: ");
+                array[i][j] = getValidInput(scanner);
+            }
+        }
+
+        int sum = 0;
+        for (int[] row : array) {
+            for (int element : row) {
+                sum += element;
+            }
+        }
+
+        double average = (double) sum / (rows * cols);
+        System.out.println("Zbir od elementi: " + sum);
+        System.out.println("Prosek na elementi: " + average);
+    }
+
+    // Helper method to get valid integer input
+    private static int getValidInput(Scanner scanner) {
+        while (true) {
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Vnesete broj.");
+                scanner.next();
+            }
+        }
+    }
+}
